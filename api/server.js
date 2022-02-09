@@ -8,8 +8,9 @@ const User = require('./models/User');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
-const path = require('path');
 require('dotenv').config()
+
+const path = require('path')
 
 const secret = 'secret123'
 const mongoUrl = 'mongodb+srv://ashraf:Asraf2001@auth.uoksk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -333,16 +334,15 @@ app.get('/UserTodos/:id', (req, res) => {
 
 
 
-if (process.env.NODE_ENV === "production"){
-
-  app.use(express.static(path.join(__dirname, '/auth-client/build')))
-  
-  app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname,"auth-client", "build", "index.html"));
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'auth-client/build')));
+// Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../auth-client/build', 'index.html'));
   });
+
 }
-
-
   
 
 app.listen(process.env.port || 5000, () => console.log('server start')) 
