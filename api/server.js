@@ -8,6 +8,7 @@ const User = require('./models/User');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
+const path = require('path');
 require('dotenv').config()
 
 const secret = 'secret123'
@@ -334,10 +335,10 @@ app.get('/UserTodos/:id', (req, res) => {
 
 if (process.env.NODE_ENV === "production"){
 
-  app.use(express.static(path.join(__dirname,"client", "build")))
+  app.use(express.static(path.join(__dirname, '/auth-client/build')))
   
   app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname,"client", "build", "index.html"));
+      res.sendFile(path.resolve(__dirname,"auth-client", "build", "index.html"));
   });
 }
 
