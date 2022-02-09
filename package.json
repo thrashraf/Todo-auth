@@ -1,11 +1,15 @@
 {
   "name": "api",
+  "proxy": "http://localhost:5000",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon api/server\" \"cd auth-client && npm start \"",
+
+    "start": "concurrently \"nodemon api/server.js\" \"cd auth-client && npm start\"",
+    "heroku-postbuild": "cd auth-client && npm install && npm install --only=dev --no-shrinkwrap && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "author": "",
   "license": "ISC",
