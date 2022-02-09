@@ -8,6 +8,7 @@ const User = require('./models/User');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
+require('dotenv').config()
 
 const secret = 'secret123'
 const mongoUrl = 'mongodb+srv://ashraf:Asraf2001@auth.uoksk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -336,4 +337,4 @@ app.get('/UserTodos/:id', (req, res) => {
 
   
 
-app.listen(5000, () => console.log('server start')) 
+app.listen(process.env.port || 5000, () => console.log('server start')) 
